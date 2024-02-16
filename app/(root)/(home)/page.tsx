@@ -1,10 +1,9 @@
-const Home = () => {
-
+import { UserButton } from "@clerk/nextjs";
+ 
+export default function Home() {
   return (
-    <div>
-      Home
+    <div className="h-screen">
+      <UserButton afterSignOutUrl="/"/>
     </div>
   )
 }
-
-export default Home
