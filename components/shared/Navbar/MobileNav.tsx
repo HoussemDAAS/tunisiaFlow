@@ -34,6 +34,7 @@ const NavContent = () => {
                 width={20}
                 height={20}
                 alt={link.label}
+                style={{ width: "20px", height: "20px", objectFit: "contain" }}
                 className={`${isActive ? "" : "invert-colors"}`}
               />
               <p className={`${isActive ? "base-bold" : "base-medium"} `}>{link.label}</p>
@@ -67,6 +68,7 @@ const MobileNav = () => {
             width={23}
             height={23}
             alt="TunDEV"
+            style={{ width: "23px", height: "23px", objectFit: "contain" }}
           />
           <p className="h2-bold  text-dark100_light900  font-spaceGrotesk ">
             Tunisia <span className="text-primary-500">Flow</span>

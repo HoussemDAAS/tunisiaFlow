@@ -9,7 +9,7 @@ import { SignedOut } from "@clerk/nextjs";
 const LeftSideContent = () => {
   const pathname = usePathname();
   return (
-    <div className="flex flex-1 flex-col gap-6">
+    <div className="flex  flex-col gap-6">
       {sidebarLinks.map((link) => {
         const isActive =
           (pathname.includes(link.route) && link.route.length > 1) ||
@@ -30,6 +30,7 @@ const LeftSideContent = () => {
                 width={20}
                 height={20}
                 alt={link.label}
+                style={{ width: "20px", height: "20px", objectFit: "contain" }}
                 className={`${isActive ? "" : "invert-colors"}`}
               />
               <p className={`${isActive ? "base-bold" : "base-medium"} max-lg:hidden `}>
@@ -45,19 +46,19 @@ const LeftSideContent = () => {
 const LeftSideBar = () => {
   return (
     <section className="h-screen background-light900_dark200 sticky light-boder top-0 left-0
-     lg:w-[266px] max-sm:hidden p-6 pt-16 shadow-light-300 dark:shadow-none flex 
-      flex-col justify-between overflow-y-auto border-r dark:border-none custom-scrollbar">
+     lg:w-[266px] max-sm:hidden p-6 pt-30 shadow-light-300 dark:shadow-none flex 
+      flex-col  overflow-y-auto border-r dark:border-none custom-scrollbar">
     
 
         <LeftSideContent />
     
  
       <SignedOut>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col  gap-3 mt-[8rem]">
             
               <Link href="/sign-in">
                 <Button className="small-medium btn-secondary min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
-                  <Image src="/assets/icons/account.svg" width={20} height={20} alt="login" className="invert-colors lg:hidden" />
+                  <Image src="/assets/icons/account.svg" width={20} height={20} alt="login" className="invert-colors lg:hidden" style={{ width: "20px", height: "20px", objectFit: "contain" }}/>
                   <span className="primary-text-gradient max-lg:hidden">Sign In</span>
                 </Button>
               </Link>
@@ -65,7 +66,7 @@ const LeftSideBar = () => {
             
               <Link href="/sign-up">
                 <Button className="small-medium btn-tertiary light-border-lg min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none text-dark400_light900">
-                <Image src="/assets/icons/sign-up.svg" width={20} height={20} alt="signup" className="invert-colors xl:hidden"/>
+                <Image src="/assets/icons/sign-up.svg" width={20} height={20} alt="signup" className="invert-colors lg:hidden"style={{ width: "20px", height: "20px", objectFit: "contain" }}/>
                   <p className="max-lg:hidden">Sign up</p> 
                 </Button>
               </Link>

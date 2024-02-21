@@ -1,9 +1,9 @@
-import React from "react";
-import Image from "next/image";
-import { Input } from "@/components/ui/input";
-const GlobalSearch = () => {
+import React from 'react'
+import Image from 'next/image'
+import { Input } from '@/components/ui/input'
+const LocalSearch = () => {
   return (
-    <div className="relative w-full max-w-[600px] max-lg:hidden">
+    <div className="relative w-full max-w-[600px] ">
       <div className="background-light800_darkgradient relative flex  min-h-[56px] rounded-xl grow items-center gap-1 px-4">
         <Image
           src="/assets/icons/search.svg"
@@ -14,14 +14,14 @@ const GlobalSearch = () => {
         />
         <Input
           type="text"
-          placeholder="Search for anything"
+          placeholder="Search questions"
        
     
           className="paragraph-regular no-focus placeholder background-light800_darkgradient border-none shadow-none outline-none"
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default GlobalSearch;
+export default LocalSearch
