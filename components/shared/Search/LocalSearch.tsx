@@ -17,7 +17,7 @@ const LocalSearch = ({
   otherClasses,
 }:CustomInputsProps) => {
   return (
-    <div className="relative w-full ">
+   
       <div className={`background-light800_darkgradient relative flex  min-h-[56px] rounded-xl grow items-center gap-1 px-4 ${otherClasses}`}>
         {iconPostion === "left" && <Image
           src={imgSrc}
@@ -34,7 +34,7 @@ const LocalSearch = ({
           className="paragraph-regular no-focus placeholder background-light800_darkgradient border-none shadow-none outline-none"
         />
       </div>
-    </div>
+    
   );
 };
 
