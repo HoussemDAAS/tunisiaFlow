@@ -25,7 +25,7 @@ export default function Home() {
       upvotes: 10,
       views: 100,
       answers: [],
-      createdAt: "2023-10-10",
+      createdAt:new Date("2024-01-15T12:30:00"),
     },
     {
       _id: "2",
@@ -40,9 +40,9 @@ export default function Home() {
         picture: "https://i.pravatar.cc/300",
       },
       upvotes: 10,
-      views: 100,
+      views: 1000000,
       answers: [],
-      createdAt: "2023-10-10",
+      createdAt: new Date("2024-01-15T12:30:00"),
     },
   ];
   return (
