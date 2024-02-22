@@ -1,3 +1,4 @@
+"use client";
 import { SignedIn, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
@@ -31,7 +32,7 @@ const Navbar = () => {
                 avatarBox: "h-10 w-10",
               },
               variables: {
-                colorPrimary: "#ff7000",
+                colorPrimary: "#ff3030",
               },
             }}
           />

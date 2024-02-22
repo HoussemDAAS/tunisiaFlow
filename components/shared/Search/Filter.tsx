@@ -1,36 +1,43 @@
-"use client"
+"use client";
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-  } from "@/components/ui/select"
-  interface props{
- filters: {
-  name: string,
-  value: string
- }[]  ,
- otherClasses?:string,
- containerClasses?:string
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+interface props {
+  filters: {
+    name: string;
+    value: string;
+  }[];
+  otherClasses?: string;
+  containerClasses?: string;
 }
-const Filter = ({filters,otherClasses,containerClasses}:props) => {
+const Filter = ({ filters, otherClasses, containerClasses }: props) => {
   return (
-
-    <div className={`relative ${containerClasses} gap-4 `}>
-    <Select >
-  <SelectTrigger className={` ${otherClasses} max-w-[180px] background-light800_dark400 border-none shadow-none outline-none `}>
-    <SelectValue placeholder="Select Filter" />
-  </SelectTrigger>
-  <SelectContent>
-    <SelectItem value="light">Newest</SelectItem>
-    <SelectItem value="dark">Recommended</SelectItem>
-    <SelectItem value="system">Frequement</SelectItem>
-  </SelectContent>
-</Select>
+    <div className={`relative ${containerClasses}`}>
+      <Select>
+        <SelectTrigger
+          className={` ${otherClasses}  body-regular light-border background-light800_dark300 text-dark500_light700 border px-5 py-2.5`}
+        >
+          <div className="line-clamp-1 flex-1 text-left">
+            <SelectValue placeholder="Select a Filter" />
+          </div>
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup className="rounded  py-2 border-none dark:bg-dark-300">
+            {filters.map((filter) => (
+              <SelectItem key={filter.value} value={filter.value} className="text-dark500_light700">
+                {filter.name}
+              </SelectItem>
+            ))}
+          </SelectGroup>
+        </SelectContent>
+      </Select>
     </div>
-    
-  )
-}
+  );
+};
 
-export default Filter
+export default Filter;

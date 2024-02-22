@@ -12,15 +12,15 @@ const RightSideBar = () => {
         <h3 className="h3-bold text-dark100_light900">Top Questions</h3>
         <div className="flex flex-row gap-5 justify-between text-left">
           <p className="body-medium text-dark300_light900 flex-start"> Best practices for data fetching in a Next.js application with Server-Side Rendering (SSR)?</p>
-          <Image src="/assets/icons/arrow-right.svg" width={20} height={20} alt="arrow-right" className="invert-colors"/>
+          <Image src="/assets/icons/arrow-right.svg" width={20} height={20} alt="arrow-right" className="invert-colors"  style={{ width: "20px", height: "20px", objectFit: "contain" }}/>
         </div>
         <div className="flex flex-row gap-5 justify-between text-left">
           <p className="body-medium text-dark300_light900 flex-start"> Best practices for data fetching in a Next.js application with Server-Side Rendering (SSR)?</p>
-          <Image src="/assets/icons/arrow-right.svg" width={20} height={20} alt="arrow-right" className="invert-colors"/>
+          <Image src="/assets/icons/arrow-right.svg" width={20} height={20} alt="arrow-right" className="invert-colors "  style={{ width: "20px", height: "20px", objectFit: "contain" }}/>
         </div>
         <div className="flex flex-row gap-5 justify-between text-left">
           <p className="body-medium text-dark300_light900 flex-start"> Best practices for data fetching in a Next.js application with Server-Side Rendering (SSR)?</p>
-          <Image src="/assets/icons/arrow-right.svg" width={20} height={20} alt="arrow-right" className="invert-colors"/>
+          <Image src="/assets/icons/arrow-right.svg" width={20} height={20} alt="arrow-right" className="invert-colors"  style={{ width: "20px", height: "20px", objectFit: "contain" }}/>
         </div>
         <div className="flex flex-col  justify-between text-left mt-[4rem] ">
         <h3 className="h3-bold text-dark100_light900">Top Questions</h3>
