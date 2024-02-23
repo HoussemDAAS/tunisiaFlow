@@ -37,7 +37,7 @@ label: "Profile",
 },
 {
 imgURL: "/assets/icons/question.svg",
-route: "/ask-question",
+route: "/ask",
 label: "Ask a question",
 },
 ];
