@@ -4,7 +4,8 @@ interface ITag extends Document {
   name: string;
   description: string;
   questions: Schema.Types.ObjectId[];
-  Users: Schema.Types.ObjectId[];
+  followers: Schema.Types.ObjectId[];
+  createdAt: Date;
 }
 
 const tagSchema = new Schema<ITag>({
@@ -22,12 +23,16 @@ const tagSchema = new Schema<ITag>({
       ref: "Question",
     },
   ],
-  Users: [
+  followers: [
     {
       type: Schema.Types.ObjectId,
       ref: "User",
     },
     ],
+    createdAt: {
+        type: Date,
+        default: Date.now,
+        },
 });
 
 export default models.Tag || model("Tag", tagSchema);
