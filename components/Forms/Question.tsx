@@ -19,6 +19,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { QuestionSchema } from "@/lib/validation";
 import { Badge } from "../ui/badge";
+import { createQuestion } from "@/lib/actions/questions.actions";
+
 const type: string = "create";
 const Question = () => {
   const editorRef = useRef(null);
@@ -59,10 +61,11 @@ const Question = () => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof QuestionSchema>) {
+   async function onSubmit(values: z.infer<typeof QuestionSchema>) {
     setSubmitting(true);
     try {
-        //make an async call to api to create a question
+      await  createQuestion(values);
+      
     } catch (error) {
         
     }finally{
@@ -111,6 +114,8 @@ const Question = () => {
                   apiKey={process.env.NEXT_PUBLIC_TINY_API_KEY}
                   // @ts-ignore
                   onInit={(evt, editor) => (editorRef.current = editor)}
+                  onBlur={field.onBlur}
+                  onEditorChange={(content)=>field.onChange(content)}
                   init={{
                     height: 350,
                     menubar: false,
