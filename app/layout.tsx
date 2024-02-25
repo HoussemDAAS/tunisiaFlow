@@ -2,6 +2,8 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 import React from "react";
+
+// @ts-ignore
 import { Inter, Space_Grotesk } from "next/font/google";
 import { Metadata } from "next";
 import ThemeProvider from "@/context/ThemeProvider";
