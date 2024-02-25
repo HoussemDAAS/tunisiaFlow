@@ -3,7 +3,7 @@ import {
   CreateQuestionParams,
   GetQuestionParams,
 } from "@/components/shared/interface/shared";
-import Question, { Iquestion } from "../models/question.model";
+import Question from "../models/question.model";
 import Tag from "../models/tag.model";
 import { connectToDB } from "../mongoose";
 import User from "../models/user.model";

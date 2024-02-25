@@ -1,9 +1,9 @@
 import React from "react";
-import { Button } from "../ui/button";
+
 import Link from "next/link";
 import RenderTag from "../shared/Search/RenderTag";
 import Metric from "../shared/Metric";
-import { auth } from "@clerk/nextjs";
+
 import { formatNumber, getTimestamp } from "@/lib/utils";
 interface props {
   _id: string;

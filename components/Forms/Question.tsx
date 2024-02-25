@@ -30,7 +30,6 @@ const type: string = "create";
 const Question = ({mongoUserId }: {mongoUserId:string}) => {
   const editorRef = useRef(null);
   const [isSubmitting, setSubmitting] = useState(false);
-  const [isQuestionCreated, setIsQuestionCreated] = useState(false);
   const router=useRouter();
   const path=usePathname();
   const handleKey = (e: React.KeyboardEvent<HTMLInputElement>, field: any) => {
