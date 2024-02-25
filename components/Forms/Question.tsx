@@ -30,6 +30,7 @@ const type: string = "create";
 const Question = ({mongoUserId }: {mongoUserId:string}) => {
   const editorRef = useRef(null);
   const [isSubmitting, setSubmitting] = useState(false);
+  const [isQuestionCreated, setIsQuestionCreated] = useState(false);
   const router=useRouter();
   const path=usePathname();
   const handleKey = (e: React.KeyboardEvent<HTMLInputElement>, field: any) => {
@@ -69,27 +70,25 @@ const Question = ({mongoUserId }: {mongoUserId:string}) => {
   });
 
   // 2. Define a submit handler.
-   async function onSubmit(values: z.infer<typeof QuestionSchema>) {
+  async function onSubmit(values: z.infer<typeof QuestionSchema>) {
     setSubmitting(true);
+   
     try {
-      await  createQuestion(
-            {
-              title:values.title,
-              content:values.explanation,
-              tags:values.tags,
-              author:JSON.parse(mongoUserId)
-            
-            });
-              router.push('/');
-          }
-          
-          catch (error) {
-        
-    }finally{
-        setSubmitting(false);
+      await createQuestion(
+        {
+          title: values.title,
+          content: values.explanation,
+          tags: values.tags,
+          author: JSON.parse(mongoUserId),
+          path: path
+        },
+      );
+    } finally {
+      setSubmitting(false);
     }
-    console.log(values);
+    router.push('/');
   }
+  
   return (
     <Form {...form}>
       <form
