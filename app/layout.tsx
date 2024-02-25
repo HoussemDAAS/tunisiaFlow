@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion  */
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 import React from "react";
