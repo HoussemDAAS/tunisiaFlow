@@ -67,7 +67,7 @@ const Question = ({mongoUserId }: {mongoUserId:string}) => {
       
     },
   });
-
+// @ts-ignore
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof QuestionSchema>) {
     setSubmitting(true);
