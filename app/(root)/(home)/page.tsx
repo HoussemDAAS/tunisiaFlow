@@ -5,47 +5,17 @@ import HomeFilters from "@/components/shared/Search/HomeFilters";
 import LocalSearch from "@/components/shared/Search/LocalSearch";
 import { Button } from "@/components/ui/button";
 import { HomePageFilters } from "@/constants/filters";
+import { getQuestions } from "@/lib/actions/questions.actions";
+import { get } from "http";
 
 import Link from "next/link";
 
-export default function Home() {
-  const questions = [
-    {
-      _id: "1",
-      title: "Best practices for data fetching in a Next.js application with Server-Side Rendering",
-      tags: [
-        { name: "NextJS", _id: "1" },
-        { name: "ReactJS", _id: "2" },
-      ],
-      author: {
-        _id: "1",
-        name: "Sandra",
-        picture: "https://i.pravatar.cc/300",
-      },
-      upvotes: 10,
-      views: 100,
-      answers: [],
-      createdAt:new Date("2024-01-15T12:30:00"),
-    },
-    {
-      _id: "2",
-      title: "How to render in Next.js from server side",
-      tags: [
-        { name: "NextJS", _id: "1" },
-        { name: "ReactJS", _id: "2" },
-      ],
-      author: {
-        _id: "1",
-        name: "Sandra",
-        picture: "https://i.pravatar.cc/300",
-      },
-      upvotes: 10,
-      views: 1000000,
-      answers: [],
-      createdAt: new Date("2024-01-15T12:30:00"),
-    },
-  ];
-  return (
+
+export default async function Home() {
+
+ const result= await getQuestions({});
+
+ return (
     <>
       <div className="flex w-full flex-col-reverse  justify-between gap-4 sm:flex-row sm:items-center">
         <h1 className="h1-bold text-dark100_light900">All questions</h1>
@@ -71,8 +41,8 @@ export default function Home() {
       </div>
       <HomeFilters />
       <div className="mt-10 flex w-full flex-col gap-6">
-        {questions.length > 0 ? (
-          questions.map((question) => (
+        {result.questions.length > 0 ? (
+          result.questions.map((question) => (
                <QuestionCard 
                key={question._id}
                _id={question._id}
