@@ -1,5 +1,5 @@
 
-/* eslint-disable */
+/* eslint-disable  camelcase*/
 "use server";
 
 import {
