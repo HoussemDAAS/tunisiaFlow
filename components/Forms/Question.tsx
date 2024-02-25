@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable */
 "use client";
 import React, { useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { z } from "zod";
-// @ts-ignore
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
@@ -68,7 +68,7 @@ const Question = ({mongoUserId }: {mongoUserId:string}) => {
       
     },
   });
-// @ts-ignore
+
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof QuestionSchema>) {
     setSubmitting(true);
