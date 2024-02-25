@@ -14,7 +14,22 @@ export interface CreateQuestionParams {
   author: Schema.Types.ObjectId | IUser;
   path: string;
 }
+export interface CreateUserParams{
+    clerkId:string;
+    name:string;
+    username?:string;
+    email:string;
+    picture:string;
 
+}
+export interface UpdateUserParams {
+  clerkId: string;
+  updateData: Partial<IUser>;
+  path: string;
+}
+export interface DeleteUserParams {
+  clerkId: string;
+}
 // export interface CreateAnswerParams {
 //   content: string;
 //   author: string; // User ID
@@ -116,11 +131,7 @@ export interface CreateQuestionParams {
 //   filter?: string;
 //   searchQuery?: string; // Add searchQuery parameter
 // }
-// export interface UpdateUserParams {
-//   clerkId: string;
-//   updateData: Partial<IUser>;
-//   path: string;
-// }
+
 // export interface ToggleSaveQuestionParams {
 //   userId: string;
 //   questionId: string;
@@ -138,6 +149,4 @@ export interface CreateQuestionParams {
 //   page?: number;
 //   pageSize?: number;
 // }
-// export interface DeleteUserParams {
-//   clerkId: string;
-// }
+
