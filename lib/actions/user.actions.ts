@@ -1,5 +1,5 @@
 
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable */
 "use server";
 
 import {
