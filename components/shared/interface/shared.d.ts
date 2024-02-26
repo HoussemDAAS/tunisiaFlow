@@ -30,6 +30,12 @@ export interface UpdateUserParams {
 export interface DeleteUserParams {
   clerkId: string;
 }
+export interface GetAllUsersParams {
+  page?: number;
+  pageSize?: number;
+  filter?: string;
+  searchQuery?: string; // Add searchQuery parameter
+}
 // export interface CreateAnswerParams {
 //   content: string;
 //   author: string; // User ID
@@ -111,10 +117,10 @@ export interface DeleteUserParams {
 //   pageSize?: number;
 //   searchQuery?: string;
 // }
-// export interface GetTopInteractedTagsParams {
-//   userId: string;
-//   limit?: number;
-// }
+export interface GetTopInteractedTagsParams {
+  userId: string;
+  limit?: number;
+}
 // export interface CreateUserParams {
 //   clerkId: string;
 //   name: string;
