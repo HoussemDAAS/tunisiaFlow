@@ -1,6 +1,6 @@
 import Filter from "@/components/shared/Search/Filter"
 import LocalSearch from "@/components/shared/Search/LocalSearch"
-import ProfileCard from "@/components/shared/Search/ProfileCard"
+import ProfileCard from "@/components/Cards/ProfileCard"
 import { UserFilters } from "@/constants/filters"
 import { getAllUsers } from "@/lib/actions/user.actions"
 import Link from "next/link"

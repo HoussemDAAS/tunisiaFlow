@@ -1,5 +1,5 @@
 "use server";
-import { GetTopInteractedTagsParams } from "@/components/shared/interface/shared";
+import { GetAllTagsParams, GetTopInteractedTagsParams } from "@/components/shared/interface/shared";
 import Tag from "../models/tag.model";
 import { connectToDB } from "../mongoose";
 import User from "../models/user.model";
@@ -19,5 +19,17 @@ export async function GetTopInteractedTags(params:GetTopInteractedTagsParams) {
     } catch (error) {
         console.log(error);
         throw error;
+    }
+}
+
+export async function getAlltags(params:GetAllTagsParams){
+
+    try {
+        connectToDB();
+        // const {page,pageSize,filter,searchQuery} = params;
+        const tags=await Tag.find({}).sort({ createdAt: -1 });
+        return {tags};
+    } catch (error) {
+        console.log(error);
     }
 }
