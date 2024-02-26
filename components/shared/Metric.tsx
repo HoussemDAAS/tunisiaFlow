@@ -20,7 +20,7 @@ const Metric = ({
   isAuthor,
 }: props) => {
   const metricContent = (
-    <>
+    <div className="flex items-center gap-1"> {/* Wrap the content in a flex container */}
       <Image
         src={imagUrl}
         alt={alt}
@@ -30,15 +30,13 @@ const Metric = ({
       />
       <p className={`flex items-center gap-1 ${textStyles}`}>
         {value}
-
-        <span
-          className={`small-regular gap-1 line-clamp-1 ${isAuthor ? "max-sm:hidden" : ""}`}
-        >
+        <span className={`small-regular gap-1 line-clamp-1 ${isAuthor ? "max-sm:hidden" : ""}`}>
           {title}
         </span>
       </p>
-    </>
+    </div>
   );
+
   if (href) {
     return <Link href={href}>{metricContent}</Link>;
   }

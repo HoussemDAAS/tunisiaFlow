@@ -29,6 +29,9 @@
 .background-light800_dark300 {
 @apply bg-light-800 dark:bg-dark-300 !important;
 }
+.background-light800_dark100 {
+    @apply bg-light-800 dark:bg-dark-100 !important;
+    }
 .text-dark100_light900 {
 @apply text-dark-100 dark:text-light-900 !important;
 }
@@ -141,7 +144,7 @@
 @apply shadow-light-100 dark:shadow-dark-100;
 }
 .shadow-light100_darknone {
-@apply shadow-light-100 dark:shadow-none;
+@apply shadow-light-900 dark:shadow-none border-light-900 dark:border-none border-solid ;
 }
 .primary-gradient {
 background: linear-gradient(129deg, #ff3030 0%, #e2995f 100%);

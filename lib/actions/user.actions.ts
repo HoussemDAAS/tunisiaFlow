@@ -4,6 +4,7 @@
 import {
   CreateUserParams,
   DeleteUserParams,
+  GetAllUsersParams,
   UpdateUserParams,
 } from "@/components/shared/interface/shared";
 import User from "../models/user.model";
@@ -73,5 +74,18 @@ export async function deleteUser(params: DeleteUserParams) {
   } catch (error) {
     console.log(error);
     throw error;
+  }
+}
+export async function getAllUsers(params:GetAllUsersParams) {
+  try {
+    connectToDB();
+    // const { page=1, pageSize=20, filter, searchQuery } = params;
+    const users = await User.find({}).sort({ createdAt: -1 });
+    return {users};
+
+
+  }catch(error){
+    console.log(error);
+    throw error
   }
 }
