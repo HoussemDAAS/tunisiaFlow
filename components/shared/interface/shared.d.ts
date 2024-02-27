@@ -91,9 +91,9 @@ export interface GetAllTagsParams {
 //   author: Schema.Types.ObjectId | IUser;
 //   path: string;
 // }
-// export interface GetQuestionByIdParams {
-//   questionId: string;
-// }
+export interface GetQuestionByIdParams {
+  questionId: string;
+}
 // export interface QuestionVoteParams {
 //   questionId: string;
 //   userId: string;

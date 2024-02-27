@@ -1,6 +1,7 @@
 "use server";
 import {
   CreateQuestionParams,
+  GetQuestionByIdParams,
   GetQuestionParams,
 } from "@/components/shared/interface/shared";
 import Question from "../models/question.model";
@@ -8,6 +9,7 @@ import Tag from "../models/tag.model";
 import { connectToDB } from "../mongoose";
 import User from "../models/user.model";
 import { revalidatePath } from "next/cache";
+import { connect } from "http2";
 
 export async function getQuestions(params: GetQuestionParams) {
   try {
@@ -21,12 +23,26 @@ export async function getQuestions(params: GetQuestionParams) {
     return {
       questions,
     };
-
   } catch (error) {
     console.log(error);
     throw error;
   }
 }
+export async function getQuestionById(params: GetQuestionByIdParams) {
+  try {
+    connectToDB();
+    const { questionId } = params;
+    const question=await Question.findById(questionId)
+    .populate({ path: "tags", model: Tag ,select : '_id name'})
+    .populate({ path: "author", model: User,select : '_id clerkId name picture'})
+
+    return question;
+  } catch (error) {
+    
+  }
+}
+
+
 
 export async function createQuestion(params: CreateQuestionParams) {
   try {
@@ -49,11 +65,8 @@ export async function createQuestion(params: CreateQuestionParams) {
       $push: { tags: { $each: tagDocuments } },
     });
 
-   
-
     revalidatePath(path);
   } catch (error) {
     // Call onError callback if there's an error
-
   }
 }
