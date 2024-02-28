@@ -28,7 +28,7 @@ const  page = async () => {
           containerClasses=" max-md:flex"
         />
       </div>
-      <div className="mt-5 flex w-full flex-wrap justify-center  flex-row items-center  gap-8   max-sm:flex-col p-5">
+      <div className="mt-5 flex flex-wrap  sm:items-center gap-4">
         {result.users.length > 0 ? (
           result.users.map((user) => (
             <ProfileCard  key={user._id} profile={user} />

@@ -42,12 +42,36 @@ export interface GetAllTagsParams {
   filter?: string;
   searchQuery?: string;
 }
-// export interface CreateAnswerParams {
-//   content: string;
-//   author: string; // User ID
-//   question: string; // Question ID
+export interface GetQuestionByIdParams {
+  questionId: string;
+}
+// export interface createAnswerParams{
+//   content :string;
+//   author: Schema.Types.ObjectId | IUser;
+//   question: Schema.Types.ObjectId;
 //   path: string;
+
 // }
+
+
+
+
+
+
+export interface CreateAnswerParams {
+  content: string;
+  author: string; // User ID
+  question: string; // Question ID
+  path: string;
+}
+export interface GetAnswersParams{
+  questionId:string;
+  sortBy?:string;
+  page?:number;
+  pageSize?:number;
+
+}
+
 // export interface GetAnswersParams {
 //   questionId: string;
 //   sortBy?: string;
@@ -90,9 +114,6 @@ export interface GetAllTagsParams {
 //   tags: string[];
 //   author: Schema.Types.ObjectId | IUser;
 //   path: string;
-// }
-// export interface GetQuestionByIdParams {
-//   questionId: string;
 // }
 // export interface QuestionVoteParams {
 //   questionId: string;

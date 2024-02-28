@@ -22,6 +22,7 @@ import { QuestionSchema } from "@/lib/validation";
 import { Badge } from "../ui/badge";
 import { createQuestion } from "@/lib/actions/questions.actions";
 import { useRouter,usePathname } from "next/navigation";
+import { useTheme } from "@/context/ThemeProvider";
 
 const type: string = "create";
 
@@ -29,6 +30,7 @@ const type: string = "create";
 
 
 const Question = ({mongoUserId }: {mongoUserId:string}) => {
+  const { theme }=useTheme();
   const editorRef = useRef(null);
   const [isSubmitting, setSubmitting] = useState(false);
   const router=useRouter();
@@ -86,7 +88,7 @@ const Question = ({mongoUserId }: {mongoUserId:string}) => {
     } finally {
       setSubmitting(false);
     }
-    router.push('/');
+ 
   }
   
   return (
@@ -157,11 +159,13 @@ const Question = ({mongoUserId }: {mongoUserId:string}) => {
                       "codesample | bold italic backcolor | alignleft aligncenter " +
                       "alignright alignjustify | bullist numlist ",
                     content_style: "body { font-family:Inter; font-size:16px }",
+                    skin:theme==='dark'?"oxide-dark":'oxide',
+                    content_css:theme==='dark'?"dark":'light',
                   }}
                 />
               </FormControl>
               <FormDescription className="body-regular mt-2.5 text-light-500">
-                Introduce yhe problem in detail and provide as much information
+                Introduce the problem in detail and provide as much information
                 as possible.
               </FormDescription>
               <FormMessage className="text-red-500" />
