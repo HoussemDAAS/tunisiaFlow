@@ -16,7 +16,7 @@ import AllAnswers from "@/components/shared/AllAnswers";
 const page = async ({ params }: { params: { id: string } }) => {
   const question = await getQuestionById({ questionId: params.id });
   const {userId :clerkId}=auth();
-
+if(!clerkId) redirect('/sign-in');
   let user;
   if(clerkId){
     user=await getUserById({userId :clerkId});
