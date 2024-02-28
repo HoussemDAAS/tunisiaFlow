@@ -32,7 +32,7 @@ const ParseHtml = ({ data }: props) => {
   useEffect(() => {
     Prism.highlightAll();
   }, []);
-  return <div>{parse(data)}</div>;
+  return <div className="max-md:max-w-sm">{parse(data)}</div>;
 };
 
 export default ParseHtml;

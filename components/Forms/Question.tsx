@@ -88,7 +88,7 @@ const Question = ({mongoUserId }: {mongoUserId:string}) => {
     } finally {
       setSubmitting(false);
     }
-    router.push('/');
+ 
   }
   
   return (
