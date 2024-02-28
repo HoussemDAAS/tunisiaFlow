@@ -4,13 +4,23 @@ import ParseHtml from "@/components/shared/ParseHtml";
 import RenderTag from "@/components/shared/Search/RenderTag";
 import { getQuestionById } from "@/lib/actions/questions.actions";
 import { formatNumber, getTimestamp } from "@/lib/utils";
+import { getUserById } from '@/lib/actions/user.actions';
+import { auth } from '@clerk/nextjs';
+
+import { redirect } from 'next/navigation';
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const page = async ({ params, searchParams }) => {
   const question = await getQuestionById({ questionId: params.id });
+  const {userId :clerkId}=auth();
 
+  let user;
+  if(clerkId){
+    user=await getUserById({userId :clerkId});
+  }
+  
   return (
     <>
       <div className="flex-start w-full flex-col">
@@ -69,7 +79,7 @@ const page = async ({ params, searchParams }) => {
         </div>
 
 
-        <Answer />
+        <Answer mongoUserId={JSON.stringify(user._id)} questionId={JSON.stringify(question._id)} />
     </>
   );
 };

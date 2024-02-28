@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { use, useRef, useState } from "react";
 import {
   Form,
   FormControl,
@@ -17,7 +17,10 @@ import { Editor } from "@tinymce/tinymce-react";
 import { useTheme } from "@/context/ThemeProvider";
 import { Button } from "../ui/button";
 import Image from "next/image";
-const Answer = () => {
+import { createAnswer } from "@/lib/actions/Answer.action";
+import { usePathname } from "next/navigation";
+const Answer = ({mongoUserId,questionId}:{mongoUserId:string,questionId:string}) => {
+    const pathname=usePathname();
   const { theme } = useTheme();
   const [isSubmitting, setSubmitting] = useState(false);
   const editorRef = useRef(null);
@@ -27,8 +30,28 @@ const Answer = () => {
       answer: "",
     },
   });
-  const handleCreateAnswer = (data: z.infer<typeof AnswerSchema>) => {
-    console.log(data);
+  const handleCreateAnswer = async (values:z.infer<typeof AnswerSchema>) => {
+    setSubmitting(true);
+    try {
+        await createAnswer({
+            content:values.answer,
+           author: JSON.parse(mongoUserId),
+           question: JSON.parse(questionId),
+           path:pathname
+
+            
+        });
+        form.reset();
+        if(editorRef.current){
+            const editor =editorRef.current as any;
+            editor.setContent(" ");
+        }
+        console.log("success");
+    } catch (error) {
+        console.log(error);
+    }finally{
+        setSubmitting(false);
+    }
   };
   return (
     <div className="mt-10">
