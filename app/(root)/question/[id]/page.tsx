@@ -11,8 +11,9 @@ import { redirect } from 'next/navigation';
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import AllAnswers from "@/components/shared/AllAnswers";
 
-const page = async ({ params, searchParams }) => {
+const page = async ({ params }: { params: { id: string } }) => {
   const question = await getQuestionById({ questionId: params.id });
   const {userId :clerkId}=auth();
 
@@ -77,7 +78,7 @@ const page = async ({ params, searchParams }) => {
           <RenderTag key={tag._id} name={tag.name} _id={tag._id} showCount={false} />
         ))}
         </div>
-
+          <AllAnswers  questionId={question._id} userId={JSON.stringify(user?._id)} totalAnswers={question.answers.length}/>
 
         <Answer mongoUserId={JSON.stringify(user._id)} questionId={JSON.stringify(question._id)} />
     </>
