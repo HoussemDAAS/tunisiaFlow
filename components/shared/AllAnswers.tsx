@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getTimestamp } from "@/lib/utils";
 import ParseHtml from "./ParseHtml";
+import Votes from "./Votes";
 
 const AllAnswers = async ({
   questionId,
@@ -30,7 +31,7 @@ const AllAnswers = async ({
       <div>
         {result!.answers.map((answer) => (
           <article key={answer._id} className="light-border border-b py-10">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between ">
               {/* Span Id*/}
 
               <div className="mb-8 flex flex-col-reverse justify-between gap-5 sm:flex-row sm:items-center sm:gap-2">
@@ -57,8 +58,16 @@ const AllAnswers = async ({
                     </p>
                   </div>
                 </Link>
-                <div className="flex justify-end">Votting</div>
               </div>
+                <div className="flex justify-end mb-8"><Votes type="answer" 
+                  itemId={JSON.stringify(answer._id)}  
+  userId={JSON.stringify(userId)} 
+    upvotes={answer.upvotes.length} 
+    downvotes={answer.downvotes.length} 
+    hasupVoted={answer.upvotes.includes(userId)} 
+    hasDownVoted={answer.downvotes.includes(userId)} 
+    hasSaved={false} 
+    /></div>
             </div>
               <ParseHtml data={answer.content} />
           </article>

@@ -3,6 +3,7 @@ import {
   CreateQuestionParams,
   GetQuestionByIdParams,
   GetQuestionParams,
+  QuestionVoteParams,
 } from "@/components/shared/interface/shared";
 import Question from "../models/question.model";
 import Tag from "../models/tag.model";
@@ -68,5 +69,59 @@ export async function createQuestion(params: CreateQuestionParams) {
     revalidatePath(path);
   } catch (error) {
     // Call onError callback if there's an error
+  }
+}
+export async function QuestionVote(params: QuestionVoteParams) {
+  try {
+    connectToDB();
+    const { userId, questionId, path,hasupVoted,hasdownVoted } = params;
+    let updateQuery={};
+    if(hasupVoted){
+      updateQuery={$pull:{upvotes:userId}}
+    }else if(hasdownVoted){
+      updateQuery={$push:{upvotes:userId},
+      $pull:{downvotes:userId}}
+    }else {
+      updateQuery={$addToSet:{upvotes:userId}}
+    }
+    const question = await Question.findByIdAndUpdate(questionId,updateQuery,{new:true})
+    if(!question) throw new Error('Question not found');
+
+// increment author's reputation
+
+revalidatePath(path);
+
+    
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function QuestionDownVote(params: QuestionVoteParams) {
+  try {
+    connectToDB();
+    const { userId, questionId, path,hasupVoted,hasdownVoted } = params;
+    let updateQuery={};
+    if(hasdownVoted){
+      updateQuery={$pull:{downvotes:userId}}
+    }else if(hasupVoted){
+      
+      updateQuery={
+        $pull:{upvotes:userId},
+        $push:{downvotes:userId}
+      }
+    }else {
+      updateQuery={$addToSet:{downvotes:userId}}
+    }
+    const question = await Question.findByIdAndUpdate(questionId,updateQuery,{new:true})
+    if(!question) throw new Error('Question not found');
+
+// increment author's reputation
+
+
+
+    revalidatePath(path);
+  } catch (error) {
+    console.log(error);
   }
 }

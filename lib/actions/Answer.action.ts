@@ -5,7 +5,8 @@ import { connectToDB } from "../mongoose";
 import Answer from "../models/Answer.model";
 import { revalidatePath } from "next/cache";
 import Question from "../models/question.model";
-import { CreateAnswerParams, GetAnswersParams } from "@/components/shared/interface/shared";
+import { AnswerVoteParams, CreateAnswerParams, GetAnswersParams } from "@/components/shared/interface/shared";
+import { connect } from "http2";
 
 
 
@@ -45,3 +46,54 @@ export async function getAnswers(params:GetAnswersParams){
         console.log(error);
     }
 }
+
+export async function AnswerVotes(params:AnswerVoteParams){
+try {
+    connectToDB();
+    const { userId, answerId, path,hasupVoted,hasdownVoted } = params;
+    let updateQuery={};
+    if(hasupVoted){
+        updateQuery={$pull:{upvotes:userId}}
+      }else if(hasdownVoted){
+        updateQuery={$push:{upvotes:userId},
+        $pull:{downvotes:userId}}
+      }else {
+        updateQuery={$addToSet:{upvotes:userId}}
+      }
+      const answer = await Answer.findByIdAndUpdate(answerId,updateQuery,{new:true})
+      if(!answer) throw new Error('Question not found');
+// increment author's reputation
+
+revalidatePath(path);
+} catch (error) {
+    console.log(error);
+}
+}
+export async function AnswerDownVote(params:AnswerVoteParams) {
+    try {
+      connectToDB();
+      const { userId, answerId, path,hasupVoted,hasdownVoted } = params;
+      let updateQuery={};
+      if(hasdownVoted){
+        updateQuery={$pull:{downvotes:userId}}
+      }else if(hasupVoted){
+        
+        updateQuery={
+          $pull:{upvotes:userId},
+          $push:{downvotes:userId}
+        }
+      }else {
+        updateQuery={$addToSet:{downvotes:userId}}
+      }
+      const answer = await Answer.findByIdAndUpdate(answerId,updateQuery,{new:true})
+      if(!answer) throw new Error('Question not found');
+  
+  // increment author's reputation
+  
+  
+  
+      revalidatePath(path);
+    } catch (error) {
+      console.log(error);
+    }
+  }
