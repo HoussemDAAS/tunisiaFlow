@@ -1,4 +1,4 @@
-import TagsCard from "@/components/Cards/TagsCard";
+
 import NoResults from "@/components/shared/NoResults";
 import Filter from "@/components/shared/Search/Filter";
 import LocalSearch from "@/components/shared/Search/LocalSearch";

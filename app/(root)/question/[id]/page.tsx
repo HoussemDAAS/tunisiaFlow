@@ -12,11 +12,12 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import AllAnswers from "@/components/shared/AllAnswers";
+import Votes from "@/components/shared/Votes";
 
 const page = async ({ params }: { params: { id: string } }) => {
   const question = await getQuestionById({ questionId: params.id });
   const {userId :clerkId}=auth();
-
+if(!clerkId) redirect('/sign-in');
   let user;
   if(clerkId){
     user=await getUserById({userId :clerkId});
@@ -41,7 +42,18 @@ const page = async ({ params }: { params: { id: string } }) => {
               {question.author.name}
             </p>
           </Link>
-          <div className="flex justify-end">VOTING</div>
+          <div className="flex justify-end">
+            <Votes 
+            type="question"
+            itemId={JSON.stringify(question._id)}
+            userId={JSON.stringify(user?._id)}
+            upvotes={question.upvotes.length}
+            downvotes={question.downvotes.length}
+            hasupVoted={question.upvotes.includes(user?._id)}
+            hasDownVoted={question.downvotes.includes(user?._id)}
+            hasSaved={user.saved.includes(question._id)}
+            />
+          </div>
         </div>
         <h2 className="h2-semibold text-dark200_light900 mt-3.5 w-full text-left">
             {question.title}
@@ -78,7 +90,7 @@ const page = async ({ params }: { params: { id: string } }) => {
           <RenderTag key={tag._id} name={tag.name} _id={tag._id} showCount={false} />
         ))}
         </div>
-          <AllAnswers  questionId={question._id} userId={JSON.stringify(user?._id)} totalAnswers={question.answers.length}/>
+          <AllAnswers  questionId={question._id} userId={user?._id} totalAnswers={question.answers.length}/>
 
         <Answer mongoUserId={JSON.stringify(user._id)} questionId={JSON.stringify(question._id)} />
     </>
