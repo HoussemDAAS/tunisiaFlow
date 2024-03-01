@@ -102,6 +102,12 @@ export interface getSavedQuestionsParams{
 
 
 }
+
+export interface ViewQuestionParams{
+  questionId:string;
+  userId:string | undefined;
+
+}
 // export interface GetAnswersParams {
 //   questionId: string;
 //   sortBy?: string;
