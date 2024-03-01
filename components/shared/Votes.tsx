@@ -1,6 +1,7 @@
 "use client";
 import { AnswerDownVote, AnswerVotes } from "@/lib/actions/Answer.action";
 import { QuestionDownVote, QuestionVote } from "@/lib/actions/questions.actions";
+import { SaveQuestion } from "@/lib/actions/user.actions";
 import { formatNumber } from "@/lib/utils";
 import Image from "next/image";
 import { redirect, usePathname } from "next/navigation";
@@ -76,7 +77,16 @@ if(!userId){
        
     }}
     const handleSave = async () => {
+      if(!userId){
+        redirect('/sign-in');
+      }
+      await SaveQuestion({ 
+        userId:JSON.parse(userId),
+        questionId:JSON.parse(itemId),
+        path:pathname
         
+
+      })
     }
   return (
     <div className="flex flex-row gap-3 sm:gap-2 items-center ">
@@ -118,7 +128,7 @@ if(!userId){
         
         style={{ width: "15px", height: "15px", objectFit: "contain" }}
         onClick={() => handleSave()}
-      />}
+      />} 
     </div>
   );
 };
