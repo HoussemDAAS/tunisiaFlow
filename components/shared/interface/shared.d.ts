@@ -108,6 +108,13 @@ export interface ViewQuestionParams{
   userId:string | undefined;
 
 }
+export interface GetQuestionsByTagIdParams{
+  tagId:string;
+  page?:number;
+  pageSize?:number;
+  filter?:string;
+  searchQuery?:string;
+}
 // export interface GetAnswersParams {
 //   questionId: string;
 //   sortBy?: string;
