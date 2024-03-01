@@ -1,10 +1,13 @@
 "use client";
 import { AnswerDownVote, AnswerVotes } from "@/lib/actions/Answer.action";
+import { viewQuestion } from "@/lib/actions/Interaction.action";
 import { QuestionDownVote, QuestionVote } from "@/lib/actions/questions.actions";
+import { SaveQuestion } from "@/lib/actions/user.actions";
 import { formatNumber } from "@/lib/utils";
 import Image from "next/image";
-import { redirect, usePathname } from "next/navigation";
-import React from "react";
+import { redirect, usePathname, useRouter } from "next/navigation";
+
+import React, { useEffect } from "react";
 
 interface prop {
   type: string;
@@ -28,7 +31,7 @@ const Votes = ({
 }: prop) => {
 
  const pathname=usePathname();
-
+const router=useRouter();
     const handleVote = async (voteType: string) => {
 if(!userId){
   redirect('/sign-in');
@@ -76,8 +79,21 @@ if(!userId){
        
     }}
     const handleSave = async () => {
+      if(!userId){
+        redirect('/sign-in');
+      }
+      await SaveQuestion({ 
+        userId:JSON.parse(userId),
+        questionId:JSON.parse(itemId),
+        path:pathname
         
+
+      })
     }
+    useEffect(() => {
+      viewQuestion({ questionId: JSON.parse(itemId), userId: userId ? JSON.parse(userId) : undefined });
+
+    },[itemId,userId,pathname,router])
   return (
     <div className="flex flex-row gap-3 sm:gap-2 items-center ">
       <Image
@@ -118,7 +134,7 @@ if(!userId){
         
         style={{ width: "15px", height: "15px", objectFit: "contain" }}
         onClick={() => handleSave()}
-      />}
+      />} 
     </div>
   );
 };

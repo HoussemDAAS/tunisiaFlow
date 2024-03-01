@@ -85,6 +85,29 @@ export interface AnswerVoteParams{
   hasdownVoted:boolean;
   path:string;
 }
+
+export interface SaveQuestionParams{
+   userId:string;
+   questionId:string;
+   path:string;
+
+}
+
+export interface getSavedQuestionsParams{
+  clerkId:string;
+  page?:number;
+  pageSize?:number;
+  filter?:string;
+  searchQuery?:string;
+
+
+}
+
+export interface ViewQuestionParams{
+  questionId:string;
+  userId:string | undefined;
+
+}
 // export interface GetAnswersParams {
 //   questionId: string;
 //   sortBy?: string;
