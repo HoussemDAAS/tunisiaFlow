@@ -16,6 +16,7 @@ import Question from "../models/question.model";
 import { type } from "os";
 import { FilterQuery } from "mongoose";
 import Tag from "../models/tag.model";
+import Answer from "../models/Answer.model";
 
 export async function getUserById(params: any) {
   try {
@@ -145,4 +146,26 @@ export async function getSavedQuestions(params: getSavedQuestionsParams) {
     console.log(error);
     throw error;
   }
+}
+
+
+export async function getUserInfo (clerkId: string) {
+
+ try {
+  connectToDB();
+  const user = await User.findOne({ clerkId });
+  if(!user){
+    throw new Error("User not found");
+  }
+  const totalQuestions = await Question.countDocuments({ author: user._id });
+  const totalAnswers = await Answer.countDocuments({ author: user._id });
+  return {
+    user,
+    totalQuestions,
+    totalAnswers
+  };
+
+ } catch (error) {
+  
+ }
 }
