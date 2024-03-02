@@ -5,15 +5,22 @@ import Link from "next/link";
 import Image from "next/image";
 import { sidebarLinks } from "@/constants";
 import { Button } from "@/components/ui/button";
-import { SignedOut } from "@clerk/nextjs";
+import { SignedOut, useAuth } from "@clerk/nextjs";
 const LeftSideContent = () => {
   const pathname = usePathname();
+  const {userId}=useAuth();
   return (
     <div className="flex  flex-col gap-6">
       {sidebarLinks.map((link) => {
         const isActive =
           (pathname.includes(link.route) && link.route.length > 1) ||
           pathname === link.route;
+          if(link.route === "/profile") {
+            if(userId){
+              link.route=`${link.route}/${userId}`
+            }
+
+          }
         return (
        
             <Link
