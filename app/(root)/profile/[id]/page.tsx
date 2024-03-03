@@ -1,6 +1,8 @@
 import { getUserById, getUserInfo } from "@/lib/actions/user.actions";
 import Image from "next/image";
 import React from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
 import { formatDate } from "@/lib/utils";
 import { SignedIn, auth } from "@clerk/nextjs";
 import Link from "next/link";
@@ -10,7 +12,7 @@ const page = async ({ params }: { params: { id: string } }) => {
   const { userId: clerkId } = auth();
   const userJoinedAt = user?.user.joinedAt; // Assuming user?.user.joinedAt is a valid date string or Date object
   const formattedDate = userJoinedAt ? formatDate(userJoinedAt) : "";
-  console.log(user);
+
   return (
     <div className="flex flex-col gap-6 sm:gap-3">
       <div className="flex flex-col-reverse  justify-between   max-sm:flex-row">
@@ -63,7 +65,16 @@ const page = async ({ params }: { params: { id: string } }) => {
       </div>
       States
       <div className="mt-9 flex gap-10">
-
+        <Tabs defaultValue="Top-posts" className="w-[400px]">
+          <TabsList>
+            <TabsTrigger value="account">Account</TabsTrigger>
+            <TabsTrigger value="password">Password</TabsTrigger>
+          </TabsList>
+          <TabsContent value="account">
+            Make changes to your account here.
+          </TabsContent>
+          <TabsContent value="password">Change your password here.</TabsContent>
+        </Tabs>
       </div>
     </div>
   );
